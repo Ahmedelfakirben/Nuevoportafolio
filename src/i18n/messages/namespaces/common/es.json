@@ -26,5 +26,14 @@
   "source-code": "Código fuente",
   "switch-to-project": "Cambiar al proyecto {project}",
   "version": "Versión",
-  "view-project": "Ver proyecto"
+  "view-project": "Ver proyecto",
+  "skill-1": "Administración de MO365",
+  "skill-2": "Active Directory",
+  "skill-3": "Proxmox PVE",
+  "skill-4": "Scripting",
+  "skill-5": "Administración de Intune",
+  "skill-6": "Google Cloud Services",
+  "experience-title": "Experiencia",
+  "experience-1": "Soporte TI en Satec (Oct 2023 - Presente)",
+  "experience-2": "Analista SOC N1 (Abr 2023 - Oct 2023)"
 }

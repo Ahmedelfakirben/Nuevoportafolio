@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect, onBeforeUnmount } from "vue";
 import gsap from "gsap";
-import { locale } from "../../../i18n/store";
 import { t } from "../../../i18n/utils/translate";
 import AppearingText from "../../../components/AppearingText.vue";
 import { BREAKPOINTS } from "../../../utils/sizes";
@@ -64,14 +63,12 @@ watchEffect((onInvalidate) => {
         }, item.delay + 0.25);
       }
 
-      // Only fade in on desktop
       if (!isMobile && subRefs.value.length > 0) {
         const subItems = subRefs.value.filter((ref) => ref !== null && ref !== undefined);
         if (subItems.length > 0) {
           tl.fromTo(subItems, { opacity: 0 }, { opacity: 1, duration: 0.2, stagger: 0.1 }, 0.3);
         }
       } else if (isMobile && subRefs.value.length > 0) {
-        // On mobile, ensure opacity is 1 immediately
         const subItems = subRefs.value.filter((ref) => ref !== null && ref !== undefined);
         if (subItems.length > 0) {
           gsap.set(subItems, { opacity: 1 });
@@ -80,7 +77,6 @@ watchEffect((onInvalidate) => {
 
       emit("timeline:created", tl);
 
-      // Return cleanup function
       return () => {
         tl.kill();
       };
@@ -106,25 +102,19 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
   timelines.value = updatedTimelines;
 };
 
-const SERVICES_EN = [
-  { name: "Three.js & WebGL" },
-  { name: "Node.js & WebSockets" },
-  { name: "React & Vue" },
-  { name: "Kubernetes & Redis" },
-  { name: "Real-time Multiplayer" },
-] as const satisfies { name: string }[];
+const services = computed(() => [
+  { name: t("skill-1") },
+  { name: t("skill-2") },
+  { name: t("skill-3") },
+  { name: t("skill-4") },
+  { name: t("skill-5") },
+  { name: t("skill-6") },
+]);
 
-const SERVICES_DE = [
-  { name: "Three.js & WebGL" },
-  { name: "Node.js & WebSockets" },
-  { name: "React & Vue" },
-  { name: "Kubernetes & Redis" },
-  { name: "Echtzeit-Mehrspieler" },
-] as const satisfies { name: string }[];
-
-const services = computed(() => {
-  return locale.value === "en" ? SERVICES_EN : SERVICES_DE;
-});
+const experiences = computed(() => [
+  { name: t("experience-1") },
+  { name: t("experience-2") },
+]);
 </script>
 
 <template>
@@ -143,10 +133,33 @@ const services = computed(() => {
           <div class="box-services-list-item" v-for="(service, index) in services" :key="service.name">
             <p class="box-services-list-item-name">
               <AppearingText
+                v-if="service.name"
                 :text="service.name"
                 :steps="1"
                 :duration="0.35"
                 @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.15 + index * 0.1)"
+              />
+            </p>
+          </div>
+        </div>
+
+        <div class="box-services-title box-services-title-margin">
+          <AppearingText
+            :text="t('experience-title') || 'Experience'"
+            :steps="1"
+            :duration="0.35"
+            @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.15 + services.length * 0.1)"
+          />
+        </div>
+        <div class="box-services-list">
+          <div class="box-services-list-item" v-for="(exp, index) in experiences" :key="exp.name">
+            <p class="box-services-list-item-name box-services-list-item-name-small">
+              <AppearingText
+                v-if="exp.name"
+                :text="exp.name"
+                :steps="1"
+                :duration="0.35"
+                @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.15 + (services.length + index + 1) * 0.1)"
               />
             </p>
           </div>
@@ -267,6 +280,11 @@ const services = computed(() => {
           font-size: var(--font-size-lg);
         }
       }
+      
+      &-name-small {
+        font-size: 0.8em;
+        opacity: 0.9;
+      }
     }
   }
 
@@ -280,6 +298,10 @@ const services = computed(() => {
 
     @include mixins.landscape-large {
       font-size: var(--font-size-title-xs);
+    }
+    
+    &-margin {
+      margin-top: 10px;
     }
   }
 }

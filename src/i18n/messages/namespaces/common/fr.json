@@ -26,5 +26,14 @@
   "source-code": "Code source",
   "switch-to-project": "Passer au projet {project}",
   "version": "Version",
-  "view-project": "Voir le projet"
+  "view-project": "Voir le projet",
+  "skill-1": "Administration M365",
+  "skill-2": "Active Directory",
+  "skill-3": "Proxmox PVE",
+  "skill-4": "Scripting",
+  "skill-5": "Administration Intune",
+  "skill-6": "Google Cloud Services",
+  "experience-title": "Expérience",
+  "experience-1": "Support IT chez Satec (Oct 2023 - Présent)",
+  "experience-2": "Analyste SOC N1 (Avr 2023 - Oct 2023)"
 }
