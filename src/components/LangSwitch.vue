@@ -2,9 +2,14 @@
 import Button from "./Button.vue";
 import { locale } from "../i18n/store";
 import { changeLocale } from "../i18n/utils/locale";
+import { LOCALES } from "../i18n/constants";
+import type { Locale } from "../i18n/types";
 
 const handleLangSwitch = () => {
-  changeLocale(locale.value === "de" ? "en" : "de");
+  const localesKeys = Object.keys(LOCALES) as Locale[];
+  const currentIndex = localesKeys.indexOf(locale.value || "en");
+  const nextIndex = (currentIndex + 1) % localesKeys.length;
+  changeLocale(localesKeys[nextIndex]);
 };
 </script>
 
@@ -16,6 +21,6 @@ const handleLangSwitch = () => {
     data-cursor="circle-white"
     data-sound="click"
     data-hoversound="hover"
-    >{{ locale === "de" ? "EN" : "DE" }}</Button
+    >{{ locale ? locale.toUpperCase() : "EN" }}</Button
   >
 </template>
