@@ -1,6 +1,6 @@
-import thumbnailCubeWar from "../../../assets/thumbnails/cubewar.webp";
-import thumbnailQuibbo from "../../../assets/thumbnails/quibbo.webp";
-import thumbnailPokedex from "../../../assets/thumbnails/pokedex.webp";
+import thumbnailShopping from "../../../assets/thumbnails/shoppingbylina.png";
+import thumbnailRentCar from "../../../assets/thumbnails/rentcartetouan.png";
+import thumbnailHarmonic from "../../../assets/thumbnails/harmonicfusion.png";
 
 import type { ProjectPreview } from "../../types";
 
@@ -8,19 +8,19 @@ export default [
   {
     title: "Shopping By Lina",
     slug: "shoppingbylina",
-    thumbnail: thumbnailCubeWar,
+    thumbnail: thumbnailShopping,
     description: "E-Commerce Plattform",
   },
   {
     title: "RentCar Tetouan",
     slug: "rentcartetouan",
-    thumbnail: thumbnailQuibbo,
+    thumbnail: thumbnailRentCar,
     description: "Autovermietungssystem",
   },
   {
     title: "Harmonic Fusion",
     slug: "harmonicfusion",
-    thumbnail: thumbnailPokedex,
+    thumbnail: thumbnailHarmonic,
     description: "Musikalische Kollaborationsplattform",
   },
 ] as const satisfies ProjectPreview[];
