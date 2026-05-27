@@ -9,7 +9,7 @@ const handleLangSwitch = () => {
   const localesKeys = Object.keys(LOCALES) as Locale[];
   const currentIndex = localesKeys.indexOf(locale.value || "en");
   const nextIndex = (currentIndex + 1) % localesKeys.length;
-  changeLocale(localesKeys[nextIndex]);
+  changeLocale(localesKeys[nextIndex] as Locale);
 };
 </script>
 
